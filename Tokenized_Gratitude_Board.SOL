@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract GratitudeBoard {
+    mapping(address => string) public gratitudeNotes;
+
+    event NoteAdded(address indexed user, string message);
+
+    function addGratitude(string memory message) public {
+        gratitudeNotes[msg.sender] = message;
+        emit NoteAdded(msg.sender, message);
+    }
+    
+    function getGratitude(address user) public view returns (string memory) {
+        return gratitudeNotes[user];
+    }
+}
